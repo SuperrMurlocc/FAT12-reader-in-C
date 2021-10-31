@@ -1,5 +1,4 @@
 #include "file_reader.h"
-#include <stdint.h>
 
 enum fat_meaning get_fat16_meaning(uint16_t value) {
     if (value == 0x0000) {

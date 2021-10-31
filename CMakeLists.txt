@@ -29,6 +29,6 @@ add_link_options(
 # Utwórz target 'project1' i dodaj do niego pliki źródlowe:
 add_executable(project1
         main.c # Nazwa głównego pliku, z funkcją main
-        directory_reader.c
+        file_reader.c
         )
 
