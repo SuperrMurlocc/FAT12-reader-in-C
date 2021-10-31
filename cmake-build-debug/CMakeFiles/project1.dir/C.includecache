@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/jakubbednarski/Coding/CLionProjects/so2/directory_reader.c
+directory_reader.h
+/Users/jakubbednarski/Coding/CLionProjects/so2/directory_reader.h
+stdint.h
+-
+
+/Users/jakubbednarski/Coding/CLionProjects/so2/directory_reader.h
+stdlib.h
+-
+stdio.h
+-
+string.h
+-
+stdint.h
+-
+ctype.h
+-
+
