@@ -78,10 +78,10 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/jakubbednarski/Coding/CLionProjects/so2/directory_reader.c">
+		<Unit filename="/Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.c">
 			<Option target="project1"/>
 		</Unit>
-		<Unit filename="/Users/jakubbednarski/Coding/CLionProjects/so2/directory_reader.h">
+		<Unit filename="/Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.h">
 			<Option target="project1"/>
 		</Unit>
 		<Unit filename="/Users/jakubbednarski/Coding/CLionProjects/so2/main.c">

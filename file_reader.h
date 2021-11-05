@@ -1,7 +1,6 @@
 #ifndef FILE_READER
 #define FILE_READER
 
-#include <cstdio>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -89,7 +88,7 @@ int disk_read(struct disk_t* pdisk, int32_t first_sector, void* buffer, int32_t 
 int disk_close(struct disk_t* pdisk);
 
 struct volume_t {
-
+    int a;
 };
 
 struct volume_t* fat_open(struct disk_t* pdisk, uint32_t first_sector);

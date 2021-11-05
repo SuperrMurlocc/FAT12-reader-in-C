@@ -79,29 +79,29 @@ CMakeFiles/project1.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project1.dir/main.c.s"
 	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jakubbednarski/Coding/CLionProjects/so2/main.c -o CMakeFiles/project1.dir/main.c.s
 
-CMakeFiles/project1.dir/directory_reader.c.o: CMakeFiles/project1.dir/flags.make
-CMakeFiles/project1.dir/directory_reader.c.o: ../directory_reader.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/project1.dir/directory_reader.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project1.dir/directory_reader.c.o -c /Users/jakubbednarski/Coding/CLionProjects/so2/directory_reader.c
+CMakeFiles/project1.dir/file_reader.c.o: CMakeFiles/project1.dir/flags.make
+CMakeFiles/project1.dir/file_reader.c.o: ../file_reader.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/project1.dir/file_reader.c.o"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project1.dir/file_reader.c.o -c /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.c
 
-CMakeFiles/project1.dir/directory_reader.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project1.dir/directory_reader.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jakubbednarski/Coding/CLionProjects/so2/directory_reader.c > CMakeFiles/project1.dir/directory_reader.c.i
+CMakeFiles/project1.dir/file_reader.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project1.dir/file_reader.c.i"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.c > CMakeFiles/project1.dir/file_reader.c.i
 
-CMakeFiles/project1.dir/directory_reader.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project1.dir/directory_reader.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jakubbednarski/Coding/CLionProjects/so2/directory_reader.c -o CMakeFiles/project1.dir/directory_reader.c.s
+CMakeFiles/project1.dir/file_reader.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project1.dir/file_reader.c.s"
+	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.c -o CMakeFiles/project1.dir/file_reader.c.s
 
 # Object files for target project1
 project1_OBJECTS = \
 "CMakeFiles/project1.dir/main.c.o" \
-"CMakeFiles/project1.dir/directory_reader.c.o"
+"CMakeFiles/project1.dir/file_reader.c.o"
 
 # External object files for target project1
 project1_EXTERNAL_OBJECTS =
 
 project1: CMakeFiles/project1.dir/main.c.o
-project1: CMakeFiles/project1.dir/directory_reader.c.o
+project1: CMakeFiles/project1.dir/file_reader.c.o
 project1: CMakeFiles/project1.dir/build.make
 project1: CMakeFiles/project1.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable project1"

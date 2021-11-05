@@ -129,29 +129,29 @@ project1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/build
 .PHONY : project1/fast
 
-directory_reader.o: directory_reader.c.o
-.PHONY : directory_reader.o
+file_reader.o: file_reader.c.o
+.PHONY : file_reader.o
 
 # target to build an object file
-directory_reader.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/directory_reader.c.o
-.PHONY : directory_reader.c.o
+file_reader.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/file_reader.c.o
+.PHONY : file_reader.c.o
 
-directory_reader.i: directory_reader.c.i
-.PHONY : directory_reader.i
+file_reader.i: file_reader.c.i
+.PHONY : file_reader.i
 
 # target to preprocess a source file
-directory_reader.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/directory_reader.c.i
-.PHONY : directory_reader.c.i
+file_reader.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/file_reader.c.i
+.PHONY : file_reader.c.i
 
-directory_reader.s: directory_reader.c.s
-.PHONY : directory_reader.s
+file_reader.s: file_reader.c.s
+.PHONY : file_reader.s
 
 # target to generate assembly for a file
-directory_reader.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/directory_reader.c.s
-.PHONY : directory_reader.c.s
+file_reader.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/file_reader.c.s
+.PHONY : file_reader.c.s
 
 main.o: main.c.o
 .PHONY : main.o
@@ -186,9 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... project1"
-	@echo "... directory_reader.o"
-	@echo "... directory_reader.i"
-	@echo "... directory_reader.s"
+	@echo "... file_reader.o"
+	@echo "... file_reader.i"
+	@echo "... file_reader.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

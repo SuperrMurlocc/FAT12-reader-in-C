@@ -1,5 +1,4 @@
 #include "file_reader.h"
-#include <sys/errno.h>
 
 enum fat_meaning get_fat16_meaning(uint16_t value) {
     if (value == 0x0000) {
@@ -218,48 +217,95 @@ struct disk_t* disk_open_from_file(const char* volume_file_name) {
         return NULL;
     }
 
-    FILE* fptr = fopen(volume_file_name, "rb");
-    if (fptr == NULL) {
-        errno = EACCES;
+    disk_file = fopen(volume_file_name, "rb");
+    if (disk_file == NULL) {
+        errno = ENOENT;
         return NULL;
     }
 
     struct disk_t *disk = (struct disk_t*) calloc(sizeof(struct disk_t), 1);
-
-    if (fread(&disk,  sizeof(struct disk_t), 1, fptr) != 1) {
-        errno = EBADF;
+    if (disk == NULL) {
+        errno = ENOMEM;
         return NULL;
     }
 
-    disk_file = fptr;
+    fread(&disk, sizeof(struct disk_t), 1, disk_file);
+
     return disk;
 }
 
  int disk_read(struct disk_t* pdisk, int32_t first_sector, void* buffer, int32_t sectors_to_read) {
     if (pdisk == NULL || first_sector <= 0 || buffer == NULL || sectors_to_read <= 0) {
         errno = EFAULT;
-        return 1;
+        return -1;
     }
 
     fseek(disk_file, first_sector*pdisk->bytes_per_sector, SEEK_SET);
 
-    if (fread(buffer, pdisk->bytes_per_sector, sectors_to_read, disk_file) != sectors_to_read) {
-        errno = EBADF;
-        return 2;
+    if (fread(buffer, pdisk->bytes_per_sector, sectors_to_read, disk_file) != (size_t )sectors_to_read) {
+        errno = ERANGE;
+        return -1;
     }
 
-    return 0;
+    return sectors_to_read;
 }
 
 int disk_close(struct disk_t* pdisk) {
     if (pdisk == NULL) {
         errno = EFAULT;
-        return 1;
+        return -1;
     }
 
     free(pdisk);
     fclose(disk_file);
 
+    return 0;
+}
+
+struct volume_t* fat_open(struct disk_t* pdisk, uint32_t first_sector) {
+    if (pdisk == NULL || first_sector <= 0) {
+        errno = EFAULT;
+        return NULL;
+    }
+
+    return NULL;
+}
+
+int fat_close(struct volume_t* pvolume) {
+    if (pvolume == NULL) {
+        errno = EFAULT;
+        return -1;
+    }
+
+    free(pvolume);
+    return 0;
+}
+
+struct file_t* file_open(struct volume_t* pvolume, const char* file_name) {
+    return NULL;
+}
+
+int file_close(struct file_t* stream) {
+    return 0;
+}
+
+size_t file_read(void *ptr, size_t size, size_t nmemb, struct file_t *stream) {
+    return nmemb;
+}
+
+int32_t file_seek(struct file_t* stream, int32_t offset, int whence) {
+    return offset;
+}
+
+struct dir_t* dir_open(struct volume_t* pvolume, const char* dir_path) {
+    return NULL;
+}
+
+int dir_read(struct dir_t* pdir, struct dir_entry_t* pentry) {
+    return 0;
+}
+
+int dir_close(struct dir_t* pdir) {
     return 0;
 }
 

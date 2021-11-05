@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/jakubbednarski/Coding/CLionProjects/so2/directory_reader.c" "/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles/project1.dir/directory_reader.c.o"
+  "/Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.c" "/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles/project1.dir/file_reader.c.o"
   "/Users/jakubbednarski/Coding/CLionProjects/so2/main.c" "/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles/project1.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
