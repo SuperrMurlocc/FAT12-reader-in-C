@@ -1,12 +1,14 @@
 #ifndef FILE_READER
 #define FILE_READER
 
+#include <cstdio>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
 #include <ctype.h>
 #include <errno.h>
+#include <sys/errno.h>
 
 struct clusters_chain_t {
     uint16_t *clusters;
@@ -56,8 +58,29 @@ struct dir_entry_t *read_directory_entry(const char *filename);
 /*******************************************************************/
 
 struct disk_t {
-
-};
+    uint8_t  jump_code[3];
+    char     oem_name[8];
+    uint16_t bytes_per_sector;
+    uint8_t  sectors_per_cluster;
+    uint16_t reserved_sectors;
+    uint8_t  fat_count;
+    uint16_t root_dir_capacity;
+    uint16_t logical_sectors16;
+    uint8_t  media_type;
+    uint16_t sectors_per_fat;
+    uint16_t chs_sectors_per_track;
+    uint16_t chs_tracks_per_cylinder;
+    uint32_t hidden_sectors;
+    uint32_t logical_sectors32;
+    uint8_t  media_id;
+    uint8_t  chs_head;
+    uint8_t  ext_bpb_signature;
+    uint32_t serial_number;
+    char     volume_label[11];
+    char     fsid[8];
+    uint8_t  boot_code[448];
+    uint16_t magic;
+} __attribute__ (( packed ));
 
 struct disk_t* disk_open_from_file(const char* volume_file_name);
 

@@ -1,4 +1,5 @@
 #include "file_reader.h"
+#include <sys/errno.h>
 
 enum fat_meaning get_fat16_meaning(uint16_t value) {
     if (value == 0x0000) {
@@ -31,7 +32,7 @@ enum fat_meaning get_fat12_meaning(uint16_t value) {
 struct clusters_chain_t *get_chain_fat16(const void * const buffer, size_t size, uint16_t first_cluster) {
     if (buffer == NULL || size <= 0)
         return NULL;
-    
+
     if (get_fat16_meaning(first_cluster) == EOC_CLUSTER) // Cluster has the length of zero.
         return NULL;
 
@@ -55,22 +56,21 @@ struct clusters_chain_t *get_chain_fat16(const void * const buffer, size_t size,
         cluster_chain->clusters[cluster_chain->size++] = value;
         switch(get_fat16_meaning(fat16_buf[value])) {
             case USED_CLUSTER: {
-                if (value > size)
-                    return NULL;
-                value = fat16_buf[value];
-                break;
-            }
+               if (value > size)
+                   return NULL;
+               value = fat16_buf[value];
+               break;
+           }
             case EOC_CLUSTER: {
-                EOC = 1;
-                break;
-            }
+              EOC = 1;
+              break;
+           }
             default: {
-                return NULL;
-            }
+             return NULL;
+           }
         }
         if (EOC)
             return cluster_chain;
-
     }
 }
 
@@ -78,7 +78,7 @@ uint16_t get_value(const uint8_t * const buffer, uint16_t value) {
     uint16_t first = buffer[(int)(1.5 * value)];
     uint16_t next = buffer[(int)(1.5 * value + 1)];
     uint16_t result = 0;
-    
+
     if (value % 2) {
         result |= ((next << 4) & 0x0ff0);
         result |= ((first >> 4) & 0x000f);
@@ -92,9 +92,9 @@ uint16_t get_value(const uint8_t * const buffer, uint16_t value) {
 struct clusters_chain_t *get_chain_fat12(const void * const buffer, size_t size, uint16_t first_cluster) {
     if (buffer == NULL || size <= 0)
         return NULL;
-    
+
     const uint8_t * const fat12_buf = buffer;
-    
+
     if (get_fat12_meaning(first_cluster) == EOC_CLUSTER) // Cluster has the size of zero.
         return NULL;
 
@@ -116,18 +116,18 @@ struct clusters_chain_t *get_chain_fat12(const void * const buffer, size_t size,
         cluster_chain->clusters[cluster_chain->size++] = value;
         switch(get_fat12_meaning(get_value(fat12_buf, value))) {
             case USED_CLUSTER: {
-                if (value > size)
-                    return NULL;
-                value = get_value(fat12_buf, value);
-                break;
-            }
+                                   if (value > size)
+                                       return NULL;
+                                   value = get_value(fat12_buf, value);
+                                   break;
+                               }
             case EOC_CLUSTER: {
-                EOC = 1;
-                break;
-            }
+                                  EOC = 1;
+                                  break;
+                              }
             default: {
-                return NULL;
-            }
+                         return NULL;
+                     }
         }
         if (EOC)
             return cluster_chain;
@@ -147,7 +147,7 @@ struct dir_entry_t *read_directory_entry(const char *filename) {
     if (dir_entry == NULL) {
         return NULL;
     }
-    
+
     unsigned char dir_entry_bytes[32] = {0}; // Read next directory entry.
 
     do {
@@ -162,14 +162,14 @@ struct dir_entry_t *read_directory_entry(const char *filename) {
             return NULL;
         }
     } while (dir_entry_bytes[0] == 0xe5); // Hadnle deleted entry.
-    
+
     memcpy(dir_entry->name, dir_entry_bytes, 8); // Copy name to struct.
     int i = 0;
     for (; isalnum(dir_entry->name[i]) && i < 8; i++);
     dir_entry->name[i] = '.';
     memcpy(dir_entry->name + i + 1, dir_entry_bytes + 8, 3); // Copy extension to struct.
     dir_entry->name[i + 4] = '\0';
-    
+
     unsigned char file_attribute_byte = dir_entry_bytes[11]; // Extract file attribute byte.
 
     if (file_attribute_byte & 0x01) { // Set proper file attribute.
@@ -200,7 +200,7 @@ struct dir_entry_t *read_directory_entry(const char *filename) {
     dir_entry->year = ((date_bytes >> 9) & 0x7f); // Set proper date.
     dir_entry->month = (date_bytes >> 5) & 0x0f;
     dir_entry->day = (date_bytes & 0x1f);
-    
+
     dir_entry->size = *((unsigned int *)(dir_entry_bytes + 28)); // Set proper size.
 
     return dir_entry;    
@@ -209,4 +209,58 @@ struct dir_entry_t *read_directory_entry(const char *filename) {
 /*******************************************************************/
 /***************************ACTUAL 2.3******************************/
 /*******************************************************************/
+
+FILE* disk_file;
+
+struct disk_t* disk_open_from_file(const char* volume_file_name) {
+    if (volume_file_name == NULL) {
+        errno = EFAULT;
+        return NULL;
+    }
+
+    FILE* fptr = fopen(volume_file_name, "rb");
+    if (fptr == NULL) {
+        errno = EACCES;
+        return NULL;
+    }
+
+    struct disk_t *disk = (struct disk_t*) calloc(sizeof(struct disk_t), 1);
+
+    if (fread(&disk,  sizeof(struct disk_t), 1, fptr) != 1) {
+        errno = EBADF;
+        return NULL;
+    }
+
+    disk_file = fptr;
+    return disk;
+}
+
+ int disk_read(struct disk_t* pdisk, int32_t first_sector, void* buffer, int32_t sectors_to_read) {
+    if (pdisk == NULL || first_sector <= 0 || buffer == NULL || sectors_to_read <= 0) {
+        errno = EFAULT;
+        return 1;
+    }
+
+    fseek(disk_file, first_sector*pdisk->bytes_per_sector, SEEK_SET);
+
+    if (fread(buffer, pdisk->bytes_per_sector, sectors_to_read, disk_file) != sectors_to_read) {
+        errno = EBADF;
+        return 2;
+    }
+
+    return 0;
+}
+
+int disk_close(struct disk_t* pdisk) {
+    if (pdisk == NULL) {
+        errno = EFAULT;
+        return 1;
+    }
+
+    free(pdisk);
+    fclose(disk_file);
+
+    return 0;
+}
+
 
