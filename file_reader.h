@@ -1,6 +1,7 @@
 #ifndef FILE_READER
 #define FILE_READER
 
+#include <_types/_uint32_t.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -88,7 +89,10 @@ int disk_read(struct disk_t* pdisk, int32_t first_sector, void* buffer, int32_t 
 int disk_close(struct disk_t* pdisk);
 
 struct volume_t {
-    int a;
+    uint32_t first_sector;
+    size_t size;
+    uint32_t bufsiz;
+    uint32_t handler;
 };
 
 struct volume_t* fat_open(struct disk_t* pdisk, uint32_t first_sector);
@@ -122,6 +126,7 @@ struct dir_t {
     unsigned char is_system: 1;
     unsigned char is_hidden: 1;
     unsigned char is_directory: 1;
+    uint16_t address;
 } __attribute__ (( packed ));
 
 struct dir_t* dir_open(struct volume_t* pvolume, const char* dir_path);

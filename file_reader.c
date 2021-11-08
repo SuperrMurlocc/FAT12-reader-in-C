@@ -1,4 +1,5 @@
 #include "file_reader.h"
+#include <stdint.h>
 
 enum fat_meaning get_fat16_meaning(uint16_t value) {
     if (value == 0x0000) {
@@ -199,7 +200,7 @@ struct dir_entry_t *read_directory_entry(const char *filename) {
     dir_entry->year = ((date_bytes >> 9) & 0x7f); // Set proper date.
     dir_entry->month = (date_bytes >> 5) & 0x0f;
     dir_entry->day = (date_bytes & 0x1f);
-
+    
     dir_entry->size = *((unsigned int *)(dir_entry_bytes + 28)); // Set proper size.
 
     return dir_entry;    
@@ -267,6 +268,15 @@ struct volume_t* fat_open(struct disk_t* pdisk, uint32_t first_sector) {
         errno = EFAULT;
         return NULL;
     }
+    
+    struct volume_t* fat = (struct volume_t*) calloc(1, sizeof(struct volume_t));
+    if (fat == NULL) {
+        errno = ENOMEM;
+        return NULL;
+    }
+
+    fat->first_sector = 1;
+    fat->size = 0x1200;
 
     return NULL;
 }
@@ -298,7 +308,62 @@ int32_t file_seek(struct file_t* stream, int32_t offset, int whence) {
 }
 
 struct dir_t* dir_open(struct volume_t* pvolume, const char* dir_path) {
-    return NULL;
+    static void *fptr = NULL;
+    if (dir_path != NULL) {
+        fptr = disk_read(pvolume, 19, fptr, 14); // dont use fopen!
+        if (fptr == NULL)
+            return NULL;
+    }
+
+    struct dir_t *dir_entry = (struct dir_t *) calloc(1, sizeof(struct dir_entry_t));
+    if (dir_entry == NULL) {
+        return NULL;
+    }
+
+    unsigned char dir_entry_bytes[32] = {0}; // Read next directory entry.
+
+    do {
+        if (feof(fptr) || fread(dir_entry_bytes, 32, 1, fptr) != 1) { // Handle end of file or ecorrupted file.
+            free(dir_entry);
+            return NULL;
+        }
+        if (dir_entry_bytes[0] == 0x00) {
+            free(dir_entry);
+            return NULL;
+        }
+    } while (dir_entry_bytes[0] == 0xe5); // Hadnle deleted entry.
+
+    memcpy(dir_entry->name, dir_entry_bytes, 8); // Copy name to struct.
+    int i = 0;
+    for (; isalnum(dir_entry->name[i]) && i < 8; i++);
+    dir_entry->name[i] = '.';
+    memcpy(dir_entry->name + i + 1, dir_entry_bytes + 8, 3); // Copy extension to struct.
+    dir_entry->name[i + 4] = '\0';
+
+    unsigned char file_attribute_byte = dir_entry_bytes[11]; // Extract file attribute byte.
+
+    if (file_attribute_byte & 0x01) { // Set proper file attribute.
+        dir_entry->is_readonly = 1;
+    }
+    if (file_attribute_byte & 0x02) {
+        dir_entry->is_hidden = 1;
+    }
+    if (file_attribute_byte & 0x04) {
+        dir_entry->is_system = 1;
+    }
+    if (file_attribute_byte & 0x10) {
+        dir_entry->is_directory = 1;
+        dir_entry->name[i] = '\0';
+    }
+    if (file_attribute_byte & 0x20) {
+        dir_entry->is_archived = 1;
+    }
+    
+    dir_entry->address = *((uint16_t *)(dir_entry_bytes + 26));
+
+    dir_entry->size = *((unsigned int *)(dir_entry_bytes + 28)); // Set proper size.
+
+    return dir_entry;    
 }
 
 int dir_read(struct dir_t* pdir, struct dir_entry_t* pentry) {
