@@ -1,14 +1,12 @@
 #ifndef FILE_READER
 #define FILE_READER
 
-#include <_types/_uint32_t.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <stdint.h>
 #include <ctype.h>
 #include <errno.h>
-#include <sys/errno.h>
 
 struct clusters_chain_t {
     uint16_t *clusters;
@@ -58,6 +56,16 @@ struct dir_entry_t *read_directory_entry(const char *filename);
 /*******************************************************************/
 
 struct disk_t {
+    FILE* fptr;
+}; 
+
+struct disk_t* disk_open_from_file(const char* volume_file_name);
+
+int disk_read(struct disk_t* pdisk, int32_t first_sector, void* buffer, int32_t sectors_to_read);
+
+int disk_close(struct disk_t* pdisk);
+
+struct volume_t {
     uint8_t  jump_code[3];
     char     oem_name[8];
     uint16_t bytes_per_sector;
@@ -80,20 +88,7 @@ struct disk_t {
     char     fsid[8];
     uint8_t  boot_code[448];
     uint16_t magic;
-} __attribute__ (( packed ));
-
-struct disk_t* disk_open_from_file(const char* volume_file_name);
-
-int disk_read(struct disk_t* pdisk, int32_t first_sector, void* buffer, int32_t sectors_to_read);
-
-int disk_close(struct disk_t* pdisk);
-
-struct volume_t {
-    uint32_t first_sector;
-    size_t size;
-    uint32_t bufsiz;
-    uint32_t handler;
-};
+}__attribute__ (( packed ));
 
 struct volume_t* fat_open(struct disk_t* pdisk, uint32_t first_sector);
 
