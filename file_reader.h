@@ -95,14 +95,12 @@ struct volume_t* fat_open(struct disk_t* pdisk, uint32_t first_sector);
 int fat_close(struct volume_t* pvolume);
 
 struct file_t {
-    char* fptr;
-    int count;
-    char* base;
-    int flag;
-    int file;
-    int charbuf;
-    int bufsiz;
-    char* tmpfname;
+    uint8_t first_sector;
+    uint8_t current_sector;
+    struct clusters_chain_t cluster_chain;
+    char sector[512];
+    uint8_t now;
+    unsigned char next_sector_flag: 1;
 };
 
 struct file_t* file_open(struct volume_t* pvolume, const char* file_name);

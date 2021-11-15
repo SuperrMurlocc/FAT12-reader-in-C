@@ -291,14 +291,28 @@ struct volume_t* fat_open(struct disk_t* pdisk, uint32_t first_sector) {
         return NULL;
     }
 
-    char fat1[(9 - 1 + 1) * BYTES_PER_SECTOR];
-    char fat2[(18 - 10 + 1) * BYTES_PER_SECTOR];
+    char *fat1 = (char *) calloc(BYTES_PER_SECTOR * super_t->sectors_per_fat, sizeof(char));
+    char *fat2 = (char *) calloc(BYTES_PER_SECTOR * super_t->sectors_per_fat, sizeof(char));
 
-    if (disk_read(pdisk, 1, fat1, 9) != 9 || disk_read(pdisk, 10, fat2, 9) != 9 || strcmp(fat1, fat2)) {
+    if (disk_read(pdisk, first_sector + 1, fat1, super_t->sectors_per_fat) != super_t->sectors_per_fat || 
+        disk_read(pdisk, first_sector + 1 + super_t->sectors_per_fat, fat2, super_t->sectors_per_fat) != super_t->sectors_per_fat) {
+        free(super_t);
+        free(fat1);
+        free(fat2);
+        errno = EINVAL;
+        return NULL;
+    }    
+    
+    if (strncmp(fat1, fat2, BYTES_PER_SECTOR*super_t->sectors_per_fat) != 0) {
+        free(fat1);
+        free(fat2);
         free(super_t);
         errno = EINVAL;
         return NULL;
     }
+    
+    free(fat1);
+    free(fat2);
 
     return super_t;
 }
