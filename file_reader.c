@@ -294,8 +294,8 @@ struct volume_t* fat_open(struct disk_t* pdisk, uint32_t first_sector) {
     char *fat1 = (char *) calloc(BYTES_PER_SECTOR * super_t->sectors_per_fat, sizeof(char));
     char *fat2 = (char *) calloc(BYTES_PER_SECTOR * super_t->sectors_per_fat, sizeof(char));
 
-    if (disk_read(pdisk, first_sector + 1, fat1, super_t->sectors_per_fat) != super_t->sectors_per_fat || 
-        disk_read(pdisk, first_sector + 1 + super_t->sectors_per_fat, fat2, super_t->sectors_per_fat) != super_t->sectors_per_fat) {
+    if (disk_read(pdisk, super_t->reserved_sectors, fat1, super_t->sectors_per_fat) != super_t->sectors_per_fat || 
+        disk_read(pdisk, super_t->reserved_sectors + super_t->sectors_per_fat, fat2, super_t->sectors_per_fat) != super_t->sectors_per_fat) {
         free(super_t);
         free(fat1);
         free(fat2);
@@ -328,10 +328,27 @@ int fat_close(struct volume_t* pvolume) {
 }
 
 struct file_t* file_open(struct volume_t* pvolume, const char* file_name) {
+    if (pvolume == NULL || file_name == NULL) {
+        errno = EFAULT;
+        return NULL;
+    }
+    
+    uint8_t root_dir_sectors = ((pvolume->root_dir_capacity * 32) + (pvolume->bytes_per_sector - 1)) / pvolume->bytes_per_sector;
+
+    uint8_t first_data_sector = pvolume->reserved_sectors + (pvolume->fat_count * pvolume->sectors_per_fat) + root_dir_sectors;
+
+    uint8_t first_root_dir_sector = first_data_sector - root_dir_sectors;
+
     return NULL;
 }
 
 int file_close(struct file_t* stream) {
+    if (stream == NULL) {
+        errno = EFAULT;
+        return -1;
+    }
+
+    free(stream);
     return 0;
 }
 
