@@ -129,6 +129,102 @@ project1/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/build
 .PHONY : project1/fast
 
+cluster.o: cluster.c.o
+.PHONY : cluster.o
+
+# target to build an object file
+cluster.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/cluster.c.o
+.PHONY : cluster.c.o
+
+cluster.i: cluster.c.i
+.PHONY : cluster.i
+
+# target to preprocess a source file
+cluster.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/cluster.c.i
+.PHONY : cluster.c.i
+
+cluster.s: cluster.c.s
+.PHONY : cluster.s
+
+# target to generate assembly for a file
+cluster.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/cluster.c.s
+.PHONY : cluster.c.s
+
+dir.o: dir.c.o
+.PHONY : dir.o
+
+# target to build an object file
+dir.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/dir.c.o
+.PHONY : dir.c.o
+
+dir.i: dir.c.i
+.PHONY : dir.i
+
+# target to preprocess a source file
+dir.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/dir.c.i
+.PHONY : dir.c.i
+
+dir.s: dir.c.s
+.PHONY : dir.s
+
+# target to generate assembly for a file
+dir.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/dir.c.s
+.PHONY : dir.c.s
+
+disk.o: disk.c.o
+.PHONY : disk.o
+
+# target to build an object file
+disk.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/disk.c.o
+.PHONY : disk.c.o
+
+disk.i: disk.c.i
+.PHONY : disk.i
+
+# target to preprocess a source file
+disk.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/disk.c.i
+.PHONY : disk.c.i
+
+disk.s: disk.c.s
+.PHONY : disk.s
+
+# target to generate assembly for a file
+disk.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/disk.c.s
+.PHONY : disk.c.s
+
+file.o: file.c.o
+.PHONY : file.o
+
+# target to build an object file
+file.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/file.c.o
+.PHONY : file.c.o
+
+file.i: file.c.i
+.PHONY : file.i
+
+# target to preprocess a source file
+file.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/file.c.i
+.PHONY : file.c.i
+
+file.s: file.c.s
+.PHONY : file.s
+
+# target to generate assembly for a file
+file.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/file.c.s
+.PHONY : file.c.s
+
 file_reader.o: file_reader.c.o
 .PHONY : file_reader.o
 
@@ -177,6 +273,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/main.c.s
 .PHONY : main.c.s
 
+volume.o: volume.c.o
+.PHONY : volume.o
+
+# target to build an object file
+volume.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/volume.c.o
+.PHONY : volume.c.o
+
+volume.i: volume.c.i
+.PHONY : volume.i
+
+# target to preprocess a source file
+volume.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/volume.c.i
+.PHONY : volume.c.i
+
+volume.s: volume.c.s
+.PHONY : volume.s
+
+# target to generate assembly for a file
+volume.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/volume.c.s
+.PHONY : volume.c.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -186,12 +306,27 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... project1"
+	@echo "... cluster.o"
+	@echo "... cluster.i"
+	@echo "... cluster.s"
+	@echo "... dir.o"
+	@echo "... dir.i"
+	@echo "... dir.s"
+	@echo "... disk.o"
+	@echo "... disk.i"
+	@echo "... disk.s"
+	@echo "... file.o"
+	@echo "... file.i"
+	@echo "... file.s"
 	@echo "... file_reader.o"
 	@echo "... file_reader.i"
 	@echo "... file_reader.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... volume.o"
+	@echo "... volume.i"
+	@echo "... volume.s"
 .PHONY : help
 
 

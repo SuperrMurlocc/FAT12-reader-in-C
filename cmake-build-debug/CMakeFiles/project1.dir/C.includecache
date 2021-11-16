@@ -6,11 +6,19 @@
 
 #IncludeRegexTransform: 
 
-/Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.c
+/Users/jakubbednarski/Coding/CLionProjects/so2/cluster.h
+
+/Users/jakubbednarski/Coding/CLionProjects/so2/dir.c
 file_reader.h
 /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.h
-sys/errno.h
--
+dir.h
+/Users/jakubbednarski/Coding/CLionProjects/so2/dir.h
+
+/Users/jakubbednarski/Coding/CLionProjects/so2/dir.h
+
+/Users/jakubbednarski/Coding/CLionProjects/so2/disk.h
+
+/Users/jakubbednarski/Coding/CLionProjects/so2/file.h
 
 /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.h
 stdlib.h
@@ -25,4 +33,16 @@ ctype.h
 -
 errno.h
 -
+cluster.h
+/Users/jakubbednarski/Coding/CLionProjects/so2/cluster.h
+disk.h
+/Users/jakubbednarski/Coding/CLionProjects/so2/disk.h
+volume.h
+/Users/jakubbednarski/Coding/CLionProjects/so2/volume.h
+file.h
+/Users/jakubbednarski/Coding/CLionProjects/so2/file.h
+dir.h
+/Users/jakubbednarski/Coding/CLionProjects/so2/dir.h
+
+/Users/jakubbednarski/Coding/CLionProjects/so2/volume.h
 

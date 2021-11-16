@@ -8,8 +8,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "/Users/jakubbednarski/Coding/CLionProjects/so2/cluster.c" "/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles/project1.dir/cluster.c.o"
+  "/Users/jakubbednarski/Coding/CLionProjects/so2/dir.c" "/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles/project1.dir/dir.c.o"
+  "/Users/jakubbednarski/Coding/CLionProjects/so2/disk.c" "/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles/project1.dir/disk.c.o"
+  "/Users/jakubbednarski/Coding/CLionProjects/so2/file.c" "/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles/project1.dir/file.c.o"
   "/Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.c" "/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles/project1.dir/file_reader.c.o"
   "/Users/jakubbednarski/Coding/CLionProjects/so2/main.c" "/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles/project1.dir/main.c.o"
+  "/Users/jakubbednarski/Coding/CLionProjects/so2/volume.c" "/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles/project1.dir/volume.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
