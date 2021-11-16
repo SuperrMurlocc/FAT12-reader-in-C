@@ -88,7 +88,7 @@ size_t file_read(void *ptr, size_t size, size_t nmemb, struct file_t *stream) {
     
     for (size_t i = 0; i < nmemb * size; i++) {
         if (stream->offset + stream->current_cluster * stream->volume->super->sectors_per_cluster * stream->volume->super->bytes_per_sector >= stream->size) {
-            return i / nmemb;
+            return i / size;
         }
         
         if (stream->offset == stream->volume->super->sectors_per_cluster * stream->volume->super->bytes_per_sector) {

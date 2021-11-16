@@ -79,22 +79,9 @@ CMakeFiles/project1.dir/main.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project1.dir/main.c.s"
 	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jakubbednarski/Coding/CLionProjects/so2/main.c -o CMakeFiles/project1.dir/main.c.s
 
-CMakeFiles/project1.dir/file_reader.c.o: CMakeFiles/project1.dir/flags.make
-CMakeFiles/project1.dir/file_reader.c.o: ../file_reader.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/project1.dir/file_reader.c.o"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project1.dir/file_reader.c.o -c /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.c
-
-CMakeFiles/project1.dir/file_reader.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/project1.dir/file_reader.c.i"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.c > CMakeFiles/project1.dir/file_reader.c.i
-
-CMakeFiles/project1.dir/file_reader.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/project1.dir/file_reader.c.s"
-	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.c -o CMakeFiles/project1.dir/file_reader.c.s
-
 CMakeFiles/project1.dir/volume.c.o: CMakeFiles/project1.dir/flags.make
 CMakeFiles/project1.dir/volume.c.o: ../volume.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/project1.dir/volume.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/project1.dir/volume.c.o"
 	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project1.dir/volume.c.o -c /Users/jakubbednarski/Coding/CLionProjects/so2/volume.c
 
 CMakeFiles/project1.dir/volume.c.i: cmake_force
@@ -107,7 +94,7 @@ CMakeFiles/project1.dir/volume.c.s: cmake_force
 
 CMakeFiles/project1.dir/cluster.c.o: CMakeFiles/project1.dir/flags.make
 CMakeFiles/project1.dir/cluster.c.o: ../cluster.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/project1.dir/cluster.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/project1.dir/cluster.c.o"
 	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project1.dir/cluster.c.o -c /Users/jakubbednarski/Coding/CLionProjects/so2/cluster.c
 
 CMakeFiles/project1.dir/cluster.c.i: cmake_force
@@ -120,7 +107,7 @@ CMakeFiles/project1.dir/cluster.c.s: cmake_force
 
 CMakeFiles/project1.dir/disk.c.o: CMakeFiles/project1.dir/flags.make
 CMakeFiles/project1.dir/disk.c.o: ../disk.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/project1.dir/disk.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/project1.dir/disk.c.o"
 	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project1.dir/disk.c.o -c /Users/jakubbednarski/Coding/CLionProjects/so2/disk.c
 
 CMakeFiles/project1.dir/disk.c.i: cmake_force
@@ -133,7 +120,7 @@ CMakeFiles/project1.dir/disk.c.s: cmake_force
 
 CMakeFiles/project1.dir/file.c.o: CMakeFiles/project1.dir/flags.make
 CMakeFiles/project1.dir/file.c.o: ../file.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/project1.dir/file.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object CMakeFiles/project1.dir/file.c.o"
 	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project1.dir/file.c.o -c /Users/jakubbednarski/Coding/CLionProjects/so2/file.c
 
 CMakeFiles/project1.dir/file.c.i: cmake_force
@@ -146,7 +133,7 @@ CMakeFiles/project1.dir/file.c.s: cmake_force
 
 CMakeFiles/project1.dir/dir.c.o: CMakeFiles/project1.dir/flags.make
 CMakeFiles/project1.dir/dir.c.o: ../dir.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building C object CMakeFiles/project1.dir/dir.c.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object CMakeFiles/project1.dir/dir.c.o"
 	/usr/bin/gcc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/project1.dir/dir.c.o -c /Users/jakubbednarski/Coding/CLionProjects/so2/dir.c
 
 CMakeFiles/project1.dir/dir.c.i: cmake_force
@@ -160,7 +147,6 @@ CMakeFiles/project1.dir/dir.c.s: cmake_force
 # Object files for target project1
 project1_OBJECTS = \
 "CMakeFiles/project1.dir/main.c.o" \
-"CMakeFiles/project1.dir/file_reader.c.o" \
 "CMakeFiles/project1.dir/volume.c.o" \
 "CMakeFiles/project1.dir/cluster.c.o" \
 "CMakeFiles/project1.dir/disk.c.o" \
@@ -171,7 +157,6 @@ project1_OBJECTS = \
 project1_EXTERNAL_OBJECTS =
 
 project1: CMakeFiles/project1.dir/main.c.o
-project1: CMakeFiles/project1.dir/file_reader.c.o
 project1: CMakeFiles/project1.dir/volume.c.o
 project1: CMakeFiles/project1.dir/cluster.c.o
 project1: CMakeFiles/project1.dir/disk.c.o
@@ -179,7 +164,7 @@ project1: CMakeFiles/project1.dir/file.c.o
 project1: CMakeFiles/project1.dir/dir.c.o
 project1: CMakeFiles/project1.dir/build.make
 project1: CMakeFiles/project1.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking C executable project1"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/jakubbednarski/Coding/CLionProjects/so2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C executable project1"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/project1.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

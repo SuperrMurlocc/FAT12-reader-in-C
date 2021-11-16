@@ -33,8 +33,6 @@ CMakeFiles/project1.dir/file.c.o: \
  ../file.h \
  ../file_reader.h \
  ../volume.h
-CMakeFiles/project1.dir/file_reader.c.o: \
- ../file_reader.c
 CMakeFiles/project1.dir/main.c.o: \
  ../cluster.h \
  ../dir.h \

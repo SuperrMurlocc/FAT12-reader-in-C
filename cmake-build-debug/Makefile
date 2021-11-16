@@ -225,30 +225,6 @@ file.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/file.c.s
 .PHONY : file.c.s
 
-file_reader.o: file_reader.c.o
-.PHONY : file_reader.o
-
-# target to build an object file
-file_reader.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/file_reader.c.o
-.PHONY : file_reader.c.o
-
-file_reader.i: file_reader.c.i
-.PHONY : file_reader.i
-
-# target to preprocess a source file
-file_reader.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/file_reader.c.i
-.PHONY : file_reader.c.i
-
-file_reader.s: file_reader.c.s
-.PHONY : file_reader.s
-
-# target to generate assembly for a file
-file_reader.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/file_reader.c.s
-.PHONY : file_reader.c.s
-
 main.o: main.c.o
 .PHONY : main.o
 
@@ -318,9 +294,6 @@ help:
 	@echo "... file.o"
 	@echo "... file.i"
 	@echo "... file.s"
-	@echo "... file_reader.o"
-	@echo "... file_reader.i"
-	@echo "... file_reader.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

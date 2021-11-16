@@ -7,15 +7,14 @@ int main() {
     if (volume != NULL)
         printf("Volume read successfully!\n");
 
-    struct file_t * file = file_open(volume, "HOT.TX");
+    struct dir_t* pdir = dir_open(volume, "\\");
 
-    if (file != NULL)
-        printf("File read successfully!\n");
-
-    char text[10000];
-    file_read(text, 4000, 1, file);
+    struct dir_entry_t entry;
+    for (int i = 0; i < 20; i++) {
+        dir_read(pdir, &entry);
+    }
     
-    file_close(file);
+    dir_close(pdir);
     fat_close(volume);
     disk_close(disk);
     return 0;

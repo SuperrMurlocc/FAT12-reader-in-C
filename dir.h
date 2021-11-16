@@ -61,6 +61,7 @@ struct dir_t {
     void* loaded_sectors;
     int offset;
     int size_in_sectors;
+    int end;
     
     struct volume_t* volume;
 };
