@@ -8,6 +8,7 @@ CMakeFiles/project1.dir/cluster.c.o: \
  ../disk.h \
  ../file.h \
  ../file_reader.h \
+ ../libs.h \
  ../volume.h
 CMakeFiles/project1.dir/dir.c.o: \
  ../cluster.h \
@@ -16,6 +17,7 @@ CMakeFiles/project1.dir/dir.c.o: \
  ../disk.h \
  ../file.h \
  ../file_reader.h \
+ ../libs.h \
  ../volume.h
 CMakeFiles/project1.dir/disk.c.o: \
  ../cluster.h \
@@ -24,6 +26,7 @@ CMakeFiles/project1.dir/disk.c.o: \
  ../disk.h \
  ../file.h \
  ../file_reader.h \
+ ../libs.h \
  ../volume.h
 CMakeFiles/project1.dir/file.c.o: \
  ../cluster.h \
@@ -32,6 +35,7 @@ CMakeFiles/project1.dir/file.c.o: \
  ../file.c \
  ../file.h \
  ../file_reader.h \
+ ../libs.h \
  ../volume.h
 CMakeFiles/project1.dir/main.c.o: \
  ../cluster.h \
@@ -39,13 +43,18 @@ CMakeFiles/project1.dir/main.c.o: \
  ../disk.h \
  ../file.h \
  ../file_reader.h \
+ ../libs.h \
  ../main.c \
  ../volume.h
+CMakeFiles/project1.dir/utilities.c.o: \
+ ../libs.h \
+ ../utilities.c
 CMakeFiles/project1.dir/volume.c.o: \
  ../cluster.h \
  ../dir.h \
  ../disk.h \
  ../file.h \
  ../file_reader.h \
+ ../libs.h \
  ../volume.c \
  ../volume.h

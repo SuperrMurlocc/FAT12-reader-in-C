@@ -34,5 +34,6 @@ add_executable(project1
         disk.c
         file.c
         dir.c
+        utilities.c
         )
 

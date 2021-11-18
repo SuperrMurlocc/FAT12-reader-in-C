@@ -8,6 +8,7 @@ CMakeFiles/project1.dir/cluster.c.o
  /Users/jakubbednarski/Coding/CLionProjects/so2/disk.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/file.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.h
+ /Users/jakubbednarski/Coding/CLionProjects/so2/libs.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/volume.h
 CMakeFiles/project1.dir/dir.c.o
  /Users/jakubbednarski/Coding/CLionProjects/so2/cluster.h
@@ -16,6 +17,7 @@ CMakeFiles/project1.dir/dir.c.o
  /Users/jakubbednarski/Coding/CLionProjects/so2/disk.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/file.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.h
+ /Users/jakubbednarski/Coding/CLionProjects/so2/libs.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/volume.h
 CMakeFiles/project1.dir/disk.c.o
  /Users/jakubbednarski/Coding/CLionProjects/so2/cluster.h
@@ -24,6 +26,7 @@ CMakeFiles/project1.dir/disk.c.o
  /Users/jakubbednarski/Coding/CLionProjects/so2/disk.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/file.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.h
+ /Users/jakubbednarski/Coding/CLionProjects/so2/libs.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/volume.h
 CMakeFiles/project1.dir/file.c.o
  /Users/jakubbednarski/Coding/CLionProjects/so2/cluster.h
@@ -32,6 +35,7 @@ CMakeFiles/project1.dir/file.c.o
  /Users/jakubbednarski/Coding/CLionProjects/so2/file.c
  /Users/jakubbednarski/Coding/CLionProjects/so2/file.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.h
+ /Users/jakubbednarski/Coding/CLionProjects/so2/libs.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/volume.h
 CMakeFiles/project1.dir/main.c.o
  /Users/jakubbednarski/Coding/CLionProjects/so2/cluster.h
@@ -39,13 +43,18 @@ CMakeFiles/project1.dir/main.c.o
  /Users/jakubbednarski/Coding/CLionProjects/so2/disk.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/file.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.h
+ /Users/jakubbednarski/Coding/CLionProjects/so2/libs.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/main.c
  /Users/jakubbednarski/Coding/CLionProjects/so2/volume.h
+CMakeFiles/project1.dir/utilities.c.o
+ /Users/jakubbednarski/Coding/CLionProjects/so2/libs.h
+ /Users/jakubbednarski/Coding/CLionProjects/so2/utilities.c
 CMakeFiles/project1.dir/volume.c.o
  /Users/jakubbednarski/Coding/CLionProjects/so2/cluster.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/dir.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/disk.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/file.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/file_reader.h
+ /Users/jakubbednarski/Coding/CLionProjects/so2/libs.h
  /Users/jakubbednarski/Coding/CLionProjects/so2/volume.c
  /Users/jakubbednarski/Coding/CLionProjects/so2/volume.h

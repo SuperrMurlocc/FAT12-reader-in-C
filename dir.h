@@ -1,6 +1,8 @@
 #ifndef DIR_H
 #define DIR_H
 
+#include "libs.h"
+
 struct dir_super_t {
     char name[8];
     char ext[3];
@@ -64,6 +66,9 @@ struct dir_t {
     int end;
     
     struct volume_t* volume;
+    
+    int first_cluster;
+    int prev_first_cluster;
 };
 
 struct dir_t* dir_open(struct volume_t* pvolume, const char* dir_path);
@@ -71,5 +76,7 @@ struct dir_t* dir_open(struct volume_t* pvolume, const char* dir_path);
 int dir_read(struct dir_t* pdir, struct dir_entry_t* pentry);
 
 int dir_close(struct dir_t* pdir);
+
+struct dir_t* open_root_dir(struct volume_t* pvolume);
 
 #endif //DIR_H

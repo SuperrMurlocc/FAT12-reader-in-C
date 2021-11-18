@@ -1,6 +1,8 @@
 #ifndef VOLUME_H
 #define VOLUME_H
 
+#include "libs.h"
+
 struct super_t {
     uint8_t  jump_code[3];
     char     oem_name[8];

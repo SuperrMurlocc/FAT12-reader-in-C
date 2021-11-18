@@ -1,6 +1,8 @@
 #ifndef CLUSTER_H
 #define CLUSTER_H
 
+#include "libs.h"
+
 struct clusters_chain_t {
     uint16_t *clusters;
     size_t size;

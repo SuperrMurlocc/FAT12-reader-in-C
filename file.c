@@ -1,5 +1,8 @@
+#include "dir.h"
 #include "file_reader.h"
 #include "file.h"
+#include <sys/errno.h>
+
 
 struct file_t* file_open(struct volume_t* pvolume, const char* file_name) {
     if (pvolume == NULL || file_name == NULL) {
@@ -18,7 +21,7 @@ struct file_t* file_open(struct volume_t* pvolume, const char* file_name) {
                 errno = ENOENT;
                 return NULL;
             }
-            if (strcmp(file_name, entry.name) == 0)
+            if (namecmp(file_name, entry.name) == 0)
                 break;
         } while (1);
         
@@ -54,8 +57,69 @@ struct file_t* file_open(struct volume_t* pvolume, const char* file_name) {
         
         return file;
     } else {
-        // zadanie na 4.0
-        return NULL;
+        char* path = strdup(file_name);
+        if (path == NULL) {
+            errno = ENOMEM;
+            return NULL;
+        }
+        char* actual_file_name;
+
+        char * last_slash = strrchr(path, '\\');
+
+        path[last_slash - path] = '\0';
+        actual_file_name = strrchr(file_name, '\\') + 1;
+
+        struct dir_t* dir = dir_open(pvolume, path);
+        if (dir == NULL) {
+            errno = ENOENT;
+            return NULL;
+        }
+
+        free(path);
+
+        struct dir_entry_t entry;
+        do {
+            int err = dir_read(dir, &entry);
+            if (err) {
+                dir_close(dir);
+                errno = ENOENT;
+                return NULL;
+            }
+            if (namecmp(actual_file_name, entry.name) == 0)
+                break;
+        } while (1);
+        
+        dir_close(dir);
+        if (entry.is_directory) {
+            errno = EISDIR;
+            return NULL;
+        }
+        
+        struct file_t* file = (struct file_t *) calloc(1, sizeof(struct file_t));
+        if (file == NULL) {
+            errno = ENOMEM;
+            return NULL;
+        }
+        
+        file->loaded_cluster = (char *) calloc(pvolume->super->sectors_per_cluster * pvolume->super->bytes_per_sector, sizeof(char));
+        if (file->loaded_cluster == NULL) {
+            file_close(file);
+            errno = ENOMEM;
+            return NULL;
+        }
+        
+        file->cluster_chain = get_chain_fat12(pvolume->fat, pvolume->fat_size*pvolume->super->bytes_per_sector, entry.first_cluster);
+        file->offset = 0;
+        file->volume = pvolume;
+        file->current_cluster = 0;
+        file->size = (int32_t) entry.file_size;
+        
+        if (disk_read(pvolume->disk, pvolume->first_data_sector + (*file->cluster_chain->clusters - 2) * pvolume->super->sectors_per_cluster, file->loaded_cluster, pvolume->super->sectors_per_cluster) != pvolume->super->sectors_per_cluster) {
+            errno = EFAULT;
+            return NULL;
+        }
+        
+        return file;
     }
 }
 

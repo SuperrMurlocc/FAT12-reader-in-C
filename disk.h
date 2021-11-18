@@ -1,6 +1,8 @@
 #ifndef DISK_H
 #define DISK_H
 
+#include "libs.h"
+
 #define BYTES_PER_SECTOR 512
 
 struct disk_t {

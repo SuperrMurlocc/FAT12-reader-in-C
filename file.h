@@ -1,6 +1,8 @@
 #ifndef FILE_H
 #define FILE_H
 
+#include "libs.h"
+
 struct file_t {
     char* loaded_cluster;
     uint16_t offset;

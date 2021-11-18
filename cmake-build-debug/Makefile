@@ -249,6 +249,30 @@ main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/main.c.s
 .PHONY : main.c.s
 
+utilities.o: utilities.c.o
+.PHONY : utilities.o
+
+# target to build an object file
+utilities.c.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/utilities.c.o
+.PHONY : utilities.c.o
+
+utilities.i: utilities.c.i
+.PHONY : utilities.i
+
+# target to preprocess a source file
+utilities.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/utilities.c.i
+.PHONY : utilities.c.i
+
+utilities.s: utilities.c.s
+.PHONY : utilities.s
+
+# target to generate assembly for a file
+utilities.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/project1.dir/build.make CMakeFiles/project1.dir/utilities.c.s
+.PHONY : utilities.c.s
+
 volume.o: volume.c.o
 .PHONY : volume.o
 
@@ -297,6 +321,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... utilities.o"
+	@echo "... utilities.i"
+	@echo "... utilities.s"
 	@echo "... volume.o"
 	@echo "... volume.i"
 	@echo "... volume.s"
