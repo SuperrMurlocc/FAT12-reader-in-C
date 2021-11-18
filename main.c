@@ -4,10 +4,10 @@ int main() {
     struct disk_t* disk = disk_open_from_file("picture_fat12_volume.img");
     struct volume_t *volume = fat_open(disk, 0);
 
-    struct file_t* file = file_open(volume, "\\HerE\\..\\heRE\\.\\STonE\\PArAGRAP\\COURSe\\BACK");
+    struct file_t* file = file_open(volume, "\\HERe\\..\\here\\SToNE\\EArLY\\LArGe\\DuRInG.tX");
 
-    char text[441];
-    file_read(text, 441, 1, file);
+    char text[200];
+    file_read(text, 200, 1, file);
     
     printf("%s", text);
     

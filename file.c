@@ -9,7 +9,6 @@ struct file_t* file_open(struct volume_t* pvolume, const char* file_name) {
         errno = EFAULT;
         return NULL;
     }
-
     
     if (strchr(file_name, '\\') == NULL) {
         struct dir_t* root_dir = dir_open(pvolume, "\\");

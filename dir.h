@@ -66,9 +66,6 @@ struct dir_t {
     int end;
     
     struct volume_t* volume;
-    
-    int first_cluster;
-    int prev_first_cluster;
 };
 
 struct dir_t* dir_open(struct volume_t* pvolume, const char* dir_path);
