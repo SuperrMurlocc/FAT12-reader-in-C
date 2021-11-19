@@ -101,8 +101,9 @@ struct dir_t* dir_open(struct volume_t* pvolume, const char* dir_path) {
                     errno = ENOENT;
                     return NULL;
                 }
-                if (namecmp(dir_name, entry.name) == 0)
+                if (namecmp(dir_name, entry.name) == 0  || (entry.has_long_name && namecmp(dir_name, entry.long_name) == 0)) {
                     break;
+                }
             } while (1);
             dir_close(dir);
             
@@ -158,7 +159,7 @@ int dir_read(struct dir_t* pdir, struct dir_entry_t* pentry) {
     struct dir_super_t *dir_super;
     
     do {
-         dir_super = (struct dir_super_t *) ((unsigned long) (pdir->loaded_sectors) + pdir->offset * BYTES_PER_ENTRY);
+        dir_super = (struct dir_super_t *) ((unsigned long) (pdir->loaded_sectors) + pdir->offset * BYTES_PER_ENTRY);
         if (dir_super == NULL) {
             errno = EIO;
             return -1;
@@ -170,7 +171,7 @@ int dir_read(struct dir_t* pdir, struct dir_entry_t* pentry) {
         }
 
         pdir->offset++;
-    } while ((unsigned char)dir_super->name[0] == 0xe5);
+    } while ((unsigned char)dir_super->name[0] == 0xe5 || (unsigned char)dir_super->name[11] == 0x0f || dir_super->volume);
     
     pentry->size = dir_super->size;
     pentry->is_archived = dir_super->archive;
@@ -180,7 +181,9 @@ int dir_read(struct dir_t* pdir, struct dir_entry_t* pentry) {
     pentry->is_system = dir_super->system;
     pentry->first_cluster = dir_super->first_cluster_low_bits;
     pentry->file_size = dir_super->size;
-    
+    pentry->has_long_name = 0;
+    memset(pentry->long_name, 0, 200);
+
     int name_len = 0, ext_len = 0;
     while (dir_super->name[name_len] != ' ' && name_len < 8) name_len++;
     while (dir_super->name[8 + ext_len] != ' ' && ext_len < 3) ext_len++;
@@ -191,6 +194,40 @@ int dir_read(struct dir_t* pdir, struct dir_entry_t* pentry) {
     if (ext_len > 0) {
         pentry->name[name_i] = '.';
         for (int i = 0; i < ext_len; i++) pentry->name[name_len + 1 + i] = dir_super->ext[i];
+    }
+
+    // HANDLE LFN
+    struct dir_super_t* dir_prev = (struct dir_super_t *) ((unsigned long) (pdir->loaded_sectors) + (pdir->offset - 2) * BYTES_PER_ENTRY);
+    if (((unsigned char *)dir_prev)[11] == 0x0f) {
+        pentry->has_long_name = 1;
+        int num_lfns = 1;
+        
+        do {
+            dir_prev = (struct dir_super_t *) ((unsigned long) (pdir->loaded_sectors) + (pdir->offset - (2 + num_lfns)) * BYTES_PER_ENTRY);
+            num_lfns++;
+        } while (((unsigned char *)dir_prev)[11] == 0x0f);
+        num_lfns--;
+        
+        for (int i = 0; i < num_lfns; i++) {
+            dir_prev = (struct dir_super_t *) ((unsigned long) (pdir->loaded_sectors) + (pdir->offset - (2 + i)) * BYTES_PER_ENTRY);
+            strncat(pentry->long_name, (char *)dir_prev + 1, 1);
+            strncat(pentry->long_name, (char *)dir_prev + 3, 1);
+            strncat(pentry->long_name, (char *)dir_prev + 5, 1);
+            strncat(pentry->long_name, (char *)dir_prev + 7, 1);
+            strncat(pentry->long_name, (char *)dir_prev + 9, 1);
+            strncat(pentry->long_name, (char *)dir_prev + 14, 1);
+            strncat(pentry->long_name, (char *)dir_prev + 16, 1);
+            strncat(pentry->long_name, (char *)dir_prev + 18, 1);
+            strncat(pentry->long_name, (char *)dir_prev + 20, 1);
+            strncat(pentry->long_name, (char *)dir_prev + 22, 1);
+            strncat(pentry->long_name, (char *)dir_prev + 24, 1);
+            strncat(pentry->long_name, (char *)dir_prev + 28, 1);
+            strncat(pentry->long_name, (char *)dir_prev + 30, 1);
+        }
+        
+        int i = 0;
+        while((unsigned char)pentry->long_name[i] != 0xff && i < num_lfns * BYTES_PER_ENTRY) i++;
+        pentry->long_name[i] = '\0';
     }
     
     return 0;

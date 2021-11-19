@@ -20,8 +20,10 @@ struct file_t* file_open(struct volume_t* pvolume, const char* file_name) {
                 errno = ENOENT;
                 return NULL;
             }
-            if (namecmp(file_name, entry.name) == 0)
+            if (namecmp(file_name, entry.name) == 0  || (entry.has_long_name && namecmp(file_name, entry.long_name) == 0)) {
                 break;
+            }
+
         } while (1);
         
         dir_close(root_dir);
@@ -70,6 +72,7 @@ struct file_t* file_open(struct volume_t* pvolume, const char* file_name) {
 
         struct dir_t* dir = dir_open(pvolume, path);
         if (dir == NULL) {
+            free(path);
             errno = ENOENT;
             return NULL;
         }
@@ -84,8 +87,10 @@ struct file_t* file_open(struct volume_t* pvolume, const char* file_name) {
                 errno = ENOENT;
                 return NULL;
             }
-            if (namecmp(actual_file_name, entry.name) == 0)
+            
+            if (namecmp(actual_file_name, entry.name) == 0  || (entry.has_long_name && namecmp(actual_file_name, entry.long_name) == 0)) {
                 break;
+            }
         } while (1);
         
         dir_close(dir);

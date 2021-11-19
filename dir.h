@@ -57,6 +57,9 @@ struct dir_entry_t {
     unsigned char is_directory: 1;
     uint16_t first_cluster;
     uint32_t file_size;
+
+    int has_long_name;
+    char long_name[200];
 };
 
 struct dir_t {
