@@ -71,6 +71,8 @@ struct dir_t {
     struct volume_t* volume;
 };
 
+char * handle_path(char * dir_path);
+
 struct dir_t* dir_open(struct volume_t* pvolume, const char* dir_path);
 
 int dir_read(struct dir_t* pdir, struct dir_entry_t* pentry);

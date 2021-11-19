@@ -34,6 +34,7 @@
 // int dir_read(struct dir_t* pdir, struct dir_entry_t* pentry);
 // int dir_close(struct dir_t* pdir);
 // struct dir_t* open_root_dir(struct volume_t* pvolume);
+// char * handle_path(char * dir_path);
 
 
 #include "file.h"
