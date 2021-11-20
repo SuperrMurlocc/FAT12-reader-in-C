@@ -1,4 +1,3 @@
-#include "file_reader.h"
 #include "disk.h"
 
 struct disk_t* disk_open_from_file(const char* volume_file_name) {

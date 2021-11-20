@@ -1,7 +1,6 @@
 #include "cluster.h"
 #include "file_reader.h"
 #include "dir.h"
-#include <sys/errno.h>
 
 #define BYTES_PER_ENTRY 32
 
@@ -128,7 +127,7 @@ struct dir_t* dir_open(struct volume_t* pvolume, const char* dir_path) {
 
             new_dir->offset = 0;
             new_dir->end = 0;
-            new_dir->size_in_sectors = pvolume->super->sectors_per_cluster * clusters_chain->size;
+            new_dir->size_in_sectors = (int)(pvolume->super->sectors_per_cluster * clusters_chain->size);
             new_dir->volume = pvolume;
 
             free(clusters_chain->clusters);

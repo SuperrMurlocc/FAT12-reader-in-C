@@ -1,4 +1,3 @@
-#include "file_reader.h"
 #include "cluster.h"
 
 enum fat_meaning get_fat16_meaning(uint16_t value) {
