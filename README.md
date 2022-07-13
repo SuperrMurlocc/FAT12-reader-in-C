@@ -1,5 +1,5 @@
 # FAT12-reader-in-C
-This is a simple implementation of FAT12 disk's reader in C, done for a school project
+This is a simple implementation of FAT12 disk's reader in C
 
 ```c
 #ifndef FILE_READER_H
